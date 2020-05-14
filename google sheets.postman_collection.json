@@ -85,7 +85,7 @@
 			"response": []
 		},
 		{
-			"name": "clear",
+			"name": "clear range",
 			"request": {
 				"auth": {
 					"type": "oauth2",
