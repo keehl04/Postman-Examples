@@ -1,0 +1,128 @@
+{
+	"info": {
+		"_postman_id": "70761a86-6259-4685-88e8-da126ef7f54e",
+		"name": "google sheets",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "create table",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "82148297-0fd1-4684-8a7e-f0305814a329",
+						"exec": [
+							"var jsonData = pm.response.json();",
+							"var schema = {",
+							"    \"required\": [\"spreadsheetId\", \"properties\"],",
+							"\"spreadsheetId\" : \"string\",",
+							"\"properties\": {",
+							"\"type\" : \"object\",",
+							"\"title\" : \"string\",",
+							"\t\"locale\": \"string\",",
+							"\t\t\"autoRecalc\": \"string\",",
+							"\t\t\"timeZone\": \"string\",",
+							"\t\t\"defaultFormat\": { ",
+							"\t\t    \"type\" : \"object\",",
+							"\t\t\t\"backgroundColor\": { ",
+							"\t\t\t    \"type\" : \"object\",",
+							"\t\t\t\t\"red\": \"int\", ",
+							"\t\t\t\t\"green\": \"int\", ",
+							"\t\t\t\t\"blue\": \"int\" ",
+							"\t\t\t},",
+							"}",
+							"}",
+							"};",
+							"",
+							"",
+							"",
+							"pm.test('Schema is valid', function() {",
+							"  pm.expect(tv4.validate(jsonData, schema)).to.be.true;",
+							"});",
+							"pm.test(\"Successful POST request\", function () {",
+							"    pm.expect(pm.response.code).to.be.oneOf([200,201,202]);",
+							"});",
+							"",
+							"pm.environment.set(\"spreadsheetId\", jsonData.spreadsheetId);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "accessToken",
+							"value": "ya29.a0AfH6SMBVoRf3sVc9jYVppm4lCMyB7NjBBgE-KedWtyaMLw8-C4-i4ESgeTpOemWlAFW76PaPcVrxI26FkTmhvi2Zmsruw84JNpphghVUcitQ_K_epKllVHD-ErAR-txPBVZKAmt7YP2jNMRAQvjsxTmrzC6mdV-9Vf0",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "https://sheets.googleapis.com/v4/spreadsheets",
+					"protocol": "https",
+					"host": [
+						"sheets",
+						"googleapis",
+						"com"
+					],
+					"path": [
+						"v4",
+						"spreadsheets"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "clear",
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "accessToken",
+							"value": "ya29.a0AfH6SMBVoRf3sVc9jYVppm4lCMyB7NjBBgE-KedWtyaMLw8-C4-i4ESgeTpOemWlAFW76PaPcVrxI26FkTmhvi2Zmsruw84JNpphghVUcitQ_K_epKllVHD-ErAR-txPBVZKAmt7YP2jNMRAQvjsxTmrzC6mdV-9Vf0",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "https://sheets.googleapis.com/v4/spreadsheets/{{spreadsheetId}}/values/{{range}}:clear",
+					"protocol": "https",
+					"host": [
+						"sheets",
+						"googleapis",
+						"com"
+					],
+					"path": [
+						"v4",
+						"spreadsheets",
+						"{{spreadsheetId}}",
+						"values",
+						"{{range}}:clear"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
